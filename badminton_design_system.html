@@ -1,0 +1,508 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+--bg:#0a0a0f;
+--bg1:#111118;
+--bg2:#16161f;
+--bg3:#1c1c28;
+--bg4:#242435;
+--border:#ffffff12;
+--border2:#ffffff1e;
+--border3:#ffffff30;
+--text:#f0f0f5;
+--text2:#a0a0b8;
+--text3:#606078;
+--accent:#7c6dfa;
+--accent2:#a78bfa;
+--accent3:#c4b5fd;
+--green:#22d3a0;
+--red:#f87171;
+--amber:#fbbf24;
+--blue:#60a5fa;
+--font:'DM Sans',sans-serif;
+--mono:'DM Mono',monospace;
+--r4:4px;--r8:8px;--r12:12px;--r16:16px;--r20:20px;--r50:50px;
+}
+
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6}
+
+.wrap{padding:32px 24px;max-width:680px}
+
+.section-label{font-size:11px;font-weight:500;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+
+.section{margin-bottom:40px}
+
+/* ── COLORS ── */
+.color-row{display:flex;gap:6px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;border-radius:var(--r8);border:1px solid var(--border2);display:flex;align-items:flex-end;padding:3px;font-size:9px;font-weight:500;color:rgba(255,255,255,.5);font-family:var(--mono)}
+
+/* ── TYPOGRAPHY ── */
+.type-scale>*{line-height:1.2;margin-bottom:10px}
+.t-display{font-size:36px;font-weight:600;letter-spacing:-.02em;color:var(--text)}
+.t-h1{font-size:24px;font-weight:600;letter-spacing:-.01em;color:var(--text)}
+.t-h2{font-size:18px;font-weight:500;color:var(--text)}
+.t-body{font-size:14px;font-weight:400;color:var(--text2);line-height:1.7}
+.t-small{font-size:12px;color:var(--text3)}
+.t-mono{font-size:13px;font-family:var(--mono);color:var(--accent3)}
+
+/* ── BUTTONS ── */
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:var(--r8);font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;border:none;transition:all .18s cubic-bezier(.4,0,.2,1)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#6c5df0;transform:translateY(-1px)}
+.btn-primary:active{transform:scale(.97)}
+.btn-secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border2)}
+.btn-secondary:hover{border-color:var(--border3);background:var(--bg4)}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid transparent}
+.btn-ghost:hover{background:var(--bg2);color:var(--text)}
+.btn-danger{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.btn-danger:hover{background:rgba(248,113,113,.2)}
+.btn-sm{padding:5px 12px;font-size:12px;border-radius:var(--r4)}
+.btn-icon{width:36px;height:36px;padding:0;justify-content:center;border-radius:var(--r8);background:var(--bg3);color:var(--text2);border:1px solid var(--border)}
+.btn-icon:hover{color:var(--text);border-color:var(--border2)}
+
+/* ── BADGES ── */
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:var(--r50);font-size:11px;font-weight:500}
+.badge-purple{background:rgba(124,109,250,.15);color:var(--accent3);border:1px solid rgba(124,109,250,.25)}
+.badge-green{background:rgba(34,211,160,.12);color:var(--green);border:1px solid rgba(34,211,160,.2)}
+.badge-red{background:rgba(248,113,113,.12);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.badge-amber{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.badge-blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.badge-gray{background:rgba(255,255,255,.06);color:var(--text2);border:1px solid var(--border)}
+.dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r16);padding:20px;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card-accent{border-color:rgba(124,109,250,.3);background:linear-gradient(135deg,rgba(124,109,250,.06) 0%,var(--bg2) 60%)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+
+/* ── STAT CARD ── */
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r12);padding:16px}
+.stat-val{font-size:28px;font-weight:600;letter-spacing:-.02em;color:var(--text);line-height:1}
+.stat-label{font-size:12px;color:var(--text3);margin-top:4px}
+.stat-delta{font-size:11px;margin-top:8px;display:inline-flex;align-items:center;gap:3px}
+.delta-up{color:var(--green)}
+.delta-down{color:var(--red)}
+
+/* ── AVATAR ── */
+.avatar-wrap{display:flex;flex-wrap:wrap;gap:16px}
+.avatar-item{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.avatar-ring{width:72px;height:72px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--bg3);transition:all .25s cubic-bezier(.34,1.56,.64,1);position:relative}
+.avatar-item:hover .avatar-ring{border-color:var(--accent);transform:scale(1.08);background:var(--bg4)}
+.avatar-item.active .avatar-ring{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,109,250,.3)}
+.avatar-item.active .avatar-ring::after{content:'✓';position:absolute;bottom:-2px;right:-2px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+.avatar-name{font-size:12px;color:var(--text2);font-weight:500}
+
+/* ── INPUTS ── */
+.input-group{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.input-label{font-size:12px;color:var(--text2);font-weight:500}
+.inp{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r8);padding:9px 12px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s;width:100%}
+.inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,109,250,.18)}
+.inp::placeholder{color:var(--text3)}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{padding:10px 12px;text-align:left;font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.tbl td{padding:11px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(255,255,255,.02);color:var(--text)}
+.tbl-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r12);overflow:hidden}
+
+/* ── PROGRESS ── */
+.progress-wrap{display:flex;flex-direction:column;gap:12px}
+.progress-item{display:flex;align-items:center;gap:10px}
+.progress-label{font-size:12px;color:var(--text2);width:80px;flex-shrink:0}
+.progress-track{flex:1;height:6px;background:var(--bg4);border-radius:var(--r50);overflow:hidden}
+.progress-fill{height:100%;border-radius:var(--r50);transition:width .8s cubic-bezier(.4,0,.2,1)}
+.progress-val{font-size:12px;color:var(--text3);font-family:var(--mono);width:32px;text-align:right}
+
+/* ── MATCH CARD ── */
+.match-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r12);padding:16px;display:flex;align-items:center;gap:12px;transition:all .2s}
+.match-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.match-team{flex:1;display:flex;align-items:center;gap:8px}
+.match-team.right{flex-direction:row-reverse;text-align:right}
+.team-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.team-name{font-size:13px;font-weight:500;color:var(--text)}
+.team-level{font-size:11px;color:var(--text3)}
+.match-score{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.score-box{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;border-radius:var(--r8)}
+.score-win{background:rgba(34,211,160,.12);color:var(--green)}
+.score-lose{background:rgba(255,255,255,.05);color:var(--text3)}
+.score-sep{color:var(--text3);font-size:12px}
+
+/* ── NOTIFICATION ── */
+.notif{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r12);margin-bottom:8px;transition:all .2s}
+.notif:hover{border-color:var(--border2)}
+.notif-icon{width:32px;height:32px;border-radius:var(--r8);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.notif-purple{background:rgba(124,109,250,.15);color:var(--accent2)}
+.notif-green{background:rgba(34,211,160,.12);color:var(--green)}
+.notif-amber{background:rgba(251,191,36,.1);color:var(--amber)}
+.notif-title{font-size:13px;font-weight:500;color:var(--text)}
+.notif-body{font-size:12px;color:var(--text3);margin-top:2px}
+.notif-time{font-size:11px;color:var(--text3);margin-left:auto;flex-shrink:0}
+
+/* ── FINANCE CHIP ── */
+.finance-row{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r10,10px);margin-bottom:6px;transition:all .2s}
+.finance-row:hover{border-color:var(--border2)}
+.finance-name{flex:1;font-size:13px;font-weight:500;color:var(--text)}
+.finance-sub{font-size:11px;color:var(--text3)}
+.finance-amt{font-size:14px;font-weight:600;font-family:var(--mono)}
+.amt-owed{color:var(--red)}
+.amt-paid{color:var(--green)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+
+.anim-fadeup{animation:fadeUp .4s cubic-bezier(.4,0,.2,1) both}
+.anim-1{animation-delay:.05s}.anim-2{animation-delay:.1s}.anim-3{animation-delay:.15s}.anim-4{animation-delay:.2s}.anim-5{animation-delay:.25s}
+
+.skeleton{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:var(--r4)}
+
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
+
+/* ── NAV ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(10,10,15,.8);border-bottom:1px solid var(--border);border-radius:var(--r16) var(--r16) 0 0}
+.nav-logo{font-size:15px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:28px;height:28px;border-radius:var(--r8);background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px}
+.nav-links{display:flex;gap:4px}
+.nav-link{padding:6px 12px;border-radius:var(--r8);font-size:13px;color:var(--text2);cursor:pointer;transition:all .15s}
+.nav-link:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-link.active{color:var(--text);background:rgba(124,109,250,.15);color:var(--accent3)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+
+/* ── SEPARATOR ── */
+.sep{height:1px;background:var(--border);margin:32px 0}
+
+/* divider label */
+.dl{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.dl span{font-size:11px;color:var(--text3);font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.dl::before,.dl::after{content:'';flex:1;height:1px;background:var(--border)}
+</style>
+
+<div class="wrap">
+
+<div class="section anim-fadeup anim-1">
+<div class="section-label">Color Tokens</div>
+<div class="color-row">
+<div class="swatch" style="background:#7c6dfa">ac</div>
+<div class="swatch" style="background:#a78bfa">a2</div>
+<div class="swatch" style="background:#c4b5fd">a3</div>
+<div class="swatch" style="background:#22d3a0">gr</div>
+<div class="swatch" style="background:#f87171">rd</div>
+<div class="swatch" style="background:#fbbf24">am</div>
+<div class="swatch" style="background:#60a5fa">bl</div>
+<div class="swatch" style="background:#0a0a0f">b0</div>
+<div class="swatch" style="background:#111118;border:1px solid #fff2">b1</div>
+<div class="swatch" style="background:#16161f;border:1px solid #fff2">b2</div>
+<div class="swatch" style="background:#1c1c28;border:1px solid #fff2">b3</div>
+<div class="swatch" style="background:#242435;border:1px solid #fff2">b4</div>
+<div class="swatch" style="background:#f0f0f5">tx</div>
+<div class="swatch" style="background:#a0a0b8">t2</div>
+<div class="swatch" style="background:#606078">t3</div>
+</div>
+</div>
+
+<div class="section anim-fadeup anim-2">
+<div class="section-label">Typography</div>
+<div class="type-scale">
+<div class="t-display">Giải đấu cầu lông</div>
+<div class="t-h1">Dashboard Admin</div>
+<div class="t-h2">Danh sách trận đấu</div>
+<div class="t-body">Thành viên tham dự: 12 người · Sân Thể thao Hà Nội · 21/06/2025</div>
+<div class="t-small">Cập nhật lần cuối: 2 phút trước</div>
+<div class="t-mono">score: 21–15, 21–18</div>
+</div>
+</div>
+
+<div class="section anim-fadeup anim-3">
+<div class="section-label">Buttons</div>
+<div class="btn-row">
+<button class="btn btn-primary">Tạo giải đấu</button>
+<button class="btn btn-secondary">Xem chi tiết</button>
+<button class="btn btn-ghost">Huỷ</button>
+<button class="btn btn-danger">Xoá</button>
+<button class="btn btn-primary btn-sm">Lưu</button>
+<button class="btn btn-secondary btn-sm">Chỉnh sửa</button>
+<button class="btn btn-icon" aria-label="Thêm mới">＋</button>
+<button class="btn btn-icon" aria-label="Cài đặt">⚙</button>
+</div>
+</div>
+
+<div class="section anim-fadeup anim-3">
+<div class="section-label">Badges & Status</div>
+<div class="badge-row">
+<span class="badge badge-green"><span class="dot"></span>Đang diễn ra</span>
+<span class="badge badge-blue"><span class="dot"></span>Sắp diễn ra</span>
+<span class="badge badge-gray"><span class="dot"></span>Đã kết thúc</span>
+<span class="badge badge-amber"><span class="dot"></span>Chờ xác nhận</span>
+<span class="badge badge-red"><span class="dot"></span>Còn nợ</span>
+<span class="badge badge-purple">Admin</span>
+<span class="badge badge-gray">Hạng A</span>
+<span class="badge badge-gray">Hạng B</span>
+</div>
+</div>
+
+<div class="sep"></div>
+<div class="dl"><span>Màn hình — Avatar Selector</span></div>
+
+<div class="section anim-fadeup anim-4">
+<div class="nav">
+<div class="nav-logo"><div class="nav-logo-icon">🏸</div> ShuttlePro</div>
+<div style="font-size:12px;color:var(--text3)">Chọn tài khoản của bạn</div>
+</div>
+<div style="background:var(--bg1);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r16) var(--r16);padding:32px 20px">
+<div class="avatar-wrap" id="avatarWrap">
+<div class="avatar-item active" onclick="selectAvatar(this)">
+<div class="avatar-ring">🏃</div>
+<div class="avatar-name">Minh Tuấn</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)">
+<div class="avatar-ring">🦅</div>
+<div class="avatar-name">Hải Đăng</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)">
+<div class="avatar-ring">🌟</div>
+<div class="avatar-name">Thu Hà</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)">
+<div class="avatar-ring">🔥</div>
+<div class="avatar-name">Quang Huy</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)">
+<div class="avatar-ring">⚡</div>
+<div class="avatar-name">Lan Anh</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)">
+<div class="avatar-ring">🎯</div>
+<div class="avatar-name">Trọng Nam</div>
+</div>
+<div class="avatar-item" onclick="selectAvatar(this)" style="opacity:.5">
+<div class="avatar-ring" style="border-style:dashed;font-size:22px;color:var(--text3)">+</div>
+<div class="avatar-name" style="color:var(--text3)">Thêm mới</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="sep"></div>
+<div class="dl"><span>Màn hình — User Home</span></div>
+
+<div class="section anim-fadeup anim-4">
+<div style="background:var(--bg1);border:1px solid var(--border);border-radius:var(--r16);overflow:hidden">
+<div class="nav" style="border-radius:0">
+<div class="nav-logo"><div class="nav-logo-icon">🏸</div> ShuttlePro</div>
+<div class="nav-links">
+<span class="nav-link active">Tổng quan</span>
+<span class="nav-link">Giải đấu</span>
+<span class="nav-link">Đội nhóm</span>
+<span class="nav-link">Tài chính</span>
+</div>
+<div class="nav-actions">
+<div style="display:flex;align-items:center;gap:8px;padding:5px 10px;background:var(--bg3);border-radius:var(--r50);border:1px solid var(--border2);cursor:pointer">
+<span style="font-size:18px">🏃</span>
+<span style="font-size:13px;font-weight:500;color:var(--text)">Minh Tuấn</span>
+</div>
+</div>
+</div>
+<div style="padding:24px 20px">
+
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px">
+<div class="stat">
+<div class="stat-val">8</div>
+<div class="stat-label">Trận đã đánh</div>
+<div class="stat-delta delta-up">↑ 2 tuần này</div>
+</div>
+<div class="stat">
+<div class="stat-val" style="color:var(--green)">6W</div>
+<div class="stat-label">Tỉ lệ thắng</div>
+<div class="stat-delta delta-up">75%</div>
+</div>
+<div class="stat">
+<div class="stat-val" style="color:var(--red)">150k</div>
+<div class="stat-label">Còn nợ (VNĐ)</div>
+<div class="stat-delta delta-down">↑ chưa thanh toán</div>
+</div>
+</div>
+
+<div style="font-size:13px;font-weight:500;color:var(--text2);margin-bottom:10px">Trận đấu sắp tới</div>
+
+<div class="match-card" style="margin-bottom:8px">
+<div class="match-team">
+<div class="team-avatar">🏃</div>
+<div><div class="team-name">Minh Tuấn</div><div class="team-level">Hạng A</div></div>
+</div>
+<div class="match-score">
+<div class="score-box score-win">21</div>
+<div class="score-sep">—</div>
+<div class="score-box score-lose">15</div>
+</div>
+<div class="match-team right">
+<div class="team-avatar">🦅</div>
+<div><div class="team-name">Hải Đăng</div><div class="team-level">Hạng A</div></div>
+</div>
+</div>
+
+<div class="match-card">
+<div class="match-team">
+<div class="team-avatar">🏃</div>
+<div><div class="team-name">Minh Tuấn + Hải Đăng</div><div class="team-level">Đôi nam</div></div>
+</div>
+<div class="match-score">
+<div class="score-box" style="background:rgba(255,255,255,.06);color:var(--text3);font-size:11px">VS</div>
+</div>
+<div class="match-team right">
+<div class="team-avatar">🌟</div>
+<div><div class="team-name">Thu Hà + Lan Anh</div><div class="team-level">Đôi nữ</div></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="sep"></div>
+<div class="dl"><span>Màn hình — Admin Finance</span></div>
+
+<div class="section anim-fadeup anim-5">
+<div class="tbl-wrap">
+<table class="tbl">
+<thead>
+<tr>
+<th>Thành viên</th>
+<th>Phát sinh</th>
+<th>Đã trả</th>
+<th>Còn lại</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🏃</span><span style="color:var(--text);font-weight:500">Minh Tuấn</span></div></td>
+<td style="font-family:var(--mono)">350,000</td>
+<td style="font-family:var(--mono);color:var(--green)">200,000</td>
+<td style="font-family:var(--mono);color:var(--red);font-weight:600">150,000</td>
+<td><span class="badge badge-amber"><span class="dot"></span>Một phần</span></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🦅</span><span style="color:var(--text);font-weight:500">Hải Đăng</span></div></td>
+<td style="font-family:var(--mono)">200,000</td>
+<td style="font-family:var(--mono);color:var(--green)">200,000</td>
+<td style="font-family:var(--mono);color:var(--text3)">0</td>
+<td><span class="badge badge-green"><span class="dot"></span>Đã trả</span></td>
+</tr>
+<tr>
+<td><div style="display:flex;align-items:center;gap:8px"><span style="font-size:18px">🌟</span><span style="color:var(--text);font-weight:500">Thu Hà</span></div></td>
+<td style="font-family:var(--mono)">200,000</td>
+<td style="font-family:var(--mono);color:var(--green)">0</td>
+<td style="font-family:var(--mono);color:var(--red);font-weight:600">200,000</td>
+<td><span class="badge badge-red"><span class="dot"></span>Chưa trả</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="sep"></div>
+<div class="dl"><span>Components — Cards & Notifications</span></div>
+
+<div class="section anim-fadeup anim-5">
+<div class="card-grid" style="margin-bottom:16px">
+<div class="card">
+<div style="font-size:22px;margin-bottom:8px">🏆</div>
+<div style="font-size:13px;font-weight:500;color:var(--text)">Giải Mùa Hè 2025</div>
+<div style="font-size:12px;color:var(--text3);margin:4px 0 10px">12 thành viên · 28/06</div>
+<span class="badge badge-green"><span class="dot"></span>Đang diễn ra</span>
+</div>
+<div class="card card-accent">
+<div style="font-size:22px;margin-bottom:8px">🎯</div>
+<div style="font-size:13px;font-weight:500;color:var(--text)">Giải Nội Bộ Q3</div>
+<div style="font-size:12px;color:var(--text3);margin:4px 0 10px">8 thành viên · 15/07</div>
+<span class="badge badge-blue"><span class="dot"></span>Sắp diễn ra</span>
+</div>
+<div class="card">
+<div style="font-size:22px;margin-bottom:8px">📋</div>
+<div style="font-size:13px;font-weight:500;color:var(--text)">Giao Hữu Tháng 5</div>
+<div style="font-size:12px;color:var(--text3);margin:4px 0 10px">6 thành viên · 10/05</div>
+<span class="badge badge-gray"><span class="dot"></span>Đã kết thúc</span>
+</div>
+</div>
+
+<div class="notif">
+<div class="notif-icon notif-purple">🤝</div>
+<div><div class="notif-title">Hải Đăng muốn ghép đôi với bạn</div><div class="notif-body">Giải Mùa Hè 2025 · Đôi nam</div></div>
+<div class="notif-time">2 phút</div>
+</div>
+<div class="notif">
+<div class="notif-icon notif-green">✓</div>
+<div><div class="notif-title">Kết quả trận đấu đã được cập nhật</div><div class="notif-body">Bạn thắng 21–15 · Vòng bán kết</div></div>
+<div class="notif-time">1 giờ</div>
+</div>
+<div class="notif">
+<div class="notif-icon notif-amber">💸</div>
+<div><div class="notif-title">Nhắc nhở thanh toán</div><div class="notif-body">Còn 150,000 VNĐ chưa thanh toán</div></div>
+<div class="notif-time">Hôm qua</div>
+</div>
+</div>
+
+<div class="sep"></div>
+<div class="dl"><span>Animations & Loading States</span></div>
+
+<div class="section">
+<div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+<div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)">
+<div class="pulse-dot"></div> Live · đang cập nhật
+</div>
+<div style="width:18px;height:18px;border:2px solid var(--accent);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite"></div>
+<span style="font-size:12px;color:var(--text3)">Đang tải...</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div class="skeleton" style="height:16px;width:60%"></div>
+<div class="skeleton" style="height:16px;width:80%"></div>
+<div class="skeleton" style="height:16px;width:45%"></div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-label">Skill progress</div>
+<div class="progress-wrap">
+<div class="progress-item">
+<div class="progress-label">Kỹ thuật</div>
+<div class="progress-track"><div class="progress-fill" style="width:82%;background:var(--accent)"></div></div>
+<div class="progress-val">82%</div>
+</div>
+<div class="progress-item">
+<div class="progress-label">Teamwork</div>
+<div class="progress-track"><div class="progress-fill" style="width:74%;background:var(--green)"></div></div>
+<div class="progress-val">74%</div>
+</div>
+<div class="progress-item">
+<div class="progress-label">Thái độ</div>
+<div class="progress-track"><div class="progress-fill" style="width:95%;background:var(--amber)"></div></div>
+<div class="progress-val">95%</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function selectAvatar(el){
+document.querySelectorAll('.avatar-item').forEach(a=>a.classList.remove('active'));
+if(!el.style.opacity) el.classList.add('active');
+}
+
+document.querySelectorAll('.progress-fill').forEach(el=>{
+const w=el.style.width;el.style.width='0';
+setTimeout(()=>{el.style.width=w},300);
+});
+</script>
