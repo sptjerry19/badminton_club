@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Pencil, Plus, Shuffle, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { MatchCard } from "@/components/tournament/match-card";
 import { PlayerSelect } from "@/components/tournament/player-select";
+import { StandingsTable } from "@/components/tournament/standings-table";
 import { StatusBadge } from "@/components/tournament/status-badge";
 import { UserAvatar } from "@/components/avatar/user-avatar";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ import {
   hasDuplicatePlayers,
   type MatchSlot,
 } from "@/lib/tournament/auto-schedule";
+import { computeStandings } from "@/lib/tournament/standings";
 import { supabase } from "@/lib/supabase/client";
 import type {
   MatchWithPlayers,
@@ -46,7 +48,14 @@ import type {
   Venue,
 } from "@/types";
 
-const TAB_VALUES = ["info", "members", "matches", "teams", "prizes"] as const;
+const TAB_VALUES = [
+  "info",
+  "members",
+  "matches",
+  "standings",
+  "teams",
+  "prizes",
+] as const;
 type TabValue = (typeof TAB_VALUES)[number];
 
 const emptyMatchForm = {
@@ -102,6 +111,10 @@ export default function AdminTournamentDetailPage() {
   const tournamentMemberUsers = members
     .filter((m) => m.users && m.status === "confirmed")
     .map((m) => m.users!);
+  const standings = useMemo(
+    () => computeStandings(tournamentMemberUsers, liveMatches),
+    [tournamentMemberUsers, liveMatches]
+  );
 
   const load = useCallback(async () => {
     const [
@@ -471,6 +484,7 @@ export default function AdminTournamentDetailPage() {
           <TabsTrigger value="info">Thông tin</TabsTrigger>
           <TabsTrigger value="members">Thành viên</TabsTrigger>
           <TabsTrigger value="matches">Trận đấu</TabsTrigger>
+          <TabsTrigger value="standings">Bảng xếp hạng</TabsTrigger>
           <TabsTrigger value="teams">Đội hình</TabsTrigger>
           <TabsTrigger value="prizes">Giải thưởng</TabsTrigger>
         </TabsList>
@@ -718,6 +732,13 @@ export default function AdminTournamentDetailPage() {
               </div>
             ))
           )}
+        </TabsContent>
+
+        <TabsContent value="standings" className="space-y-4 pt-4">
+          <p className="text-sm text-muted-foreground">
+            Xếp hạng theo số trận thắng; hòa điểm thì ưu tiên hiệu số.
+          </p>
+          <StandingsTable standings={standings} />
         </TabsContent>
 
         <TabsContent value="teams" className="space-y-6 pt-4">
