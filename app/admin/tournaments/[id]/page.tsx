@@ -9,6 +9,10 @@ import { toast } from "sonner";
 import { MatchCard } from "@/components/tournament/match-card";
 import { PlayerSelect } from "@/components/tournament/player-select";
 import { StatusBadge } from "@/components/tournament/status-badge";
+import {
+  RichTextContent,
+  RichTextEditor,
+} from "@/components/ui/rich-text-editor";
 import { UserAvatar } from "@/components/avatar/user-avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -821,21 +825,28 @@ export default function AdminTournamentDetailPage() {
 
         <TabsContent value="prizes" className="space-y-4 pt-4">
           <div className="space-y-2">
-            <Label htmlFor="prize">Mô tả giải thưởng</Label>
-            <Input
-              id="prize"
+            <Label>Mô tả giải thưởng</Label>
+            <RichTextEditor
               value={prizeEdit}
-              onChange={(e) => setPrizeEdit(e.target.value)}
-              placeholder="VD: Cúp vàng + 500k tiền mặt"
+              onChange={setPrizeEdit}
+              placeholder="VD: Hạng nhất — Cúp vàng + 500.000đ"
             />
           </div>
+          {prizeEdit && prizeEdit !== "<p></p>" && (
+            <div className="rounded-xl border border-border bg-bg-3/50 p-4">
+              <p className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">
+                Xem trước
+              </p>
+              <RichTextContent html={prizeEdit} />
+            </div>
+          )}
           <Button onClick={savePrize}>Lưu giải thưởng</Button>
         </TabsContent>
       </Tabs>
 
       {/* Edit tournament dialog */}
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>Chỉnh sửa giải đấu</DialogTitle>
           </DialogHeader>
@@ -943,16 +954,13 @@ export default function AdminTournamentDetailPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-prize">Giải thưởng</Label>
-              <Input
-                id="edit-prize"
+              <Label>Giải thưởng</Label>
+              <RichTextEditor
                 value={editForm.prize_description}
-                onChange={(e) =>
-                  setEditForm({
-                    ...editForm,
-                    prize_description: e.target.value,
-                  })
+                onChange={(html) =>
+                  setEditForm({ ...editForm, prize_description: html })
                 }
+                placeholder="Mô tả giải thưởng chi tiết..."
               />
             </div>
             <Button type="submit" className="w-full">

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { MatchCard } from "@/components/tournament/match-card";
 import { StatusBadge } from "@/components/tournament/status-badge";
 import { buttonVariants } from "@/components/ui/button";
+import { RichTextContent } from "@/components/ui/rich-text-editor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRealtimeMatches } from "@/hooks/use-realtime-matches";
 import { formatDate } from "@/lib/format";
@@ -120,7 +121,7 @@ export default function UserTournamentDetailPage() {
           <p className="text-xs uppercase tracking-wide text-muted-foreground">
             Giải thưởng
           </p>
-          <p className="mt-1 text-sm">{tournament.prize_description}</p>
+          <RichTextContent html={tournament.prize_description} className="mt-1" />
         </div>
       )}
     </div>

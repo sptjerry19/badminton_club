@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { StatusBadge } from "@/components/tournament/status-badge";
 import { Button } from "@/components/ui/button";
+import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import {
   Dialog,
   DialogContent,
@@ -261,13 +262,13 @@ export default function AdminTournamentsPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="t-prize">Giải thưởng</Label>
-              <Input
-                id="t-prize"
+              <Label>Giải thưởng</Label>
+              <RichTextEditor
                 value={form.prize_description}
-                onChange={(e) =>
-                  setForm({ ...form, prize_description: e.target.value })
+                onChange={(html) =>
+                  setForm({ ...form, prize_description: html })
                 }
+                placeholder="Mô tả giải thưởng..."
               />
             </div>
             <div className="space-y-2">

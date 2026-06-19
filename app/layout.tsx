@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { AppProviders } from "@/components/providers/app-providers";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
@@ -37,7 +38,9 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider>
-          {children}
+          <AppProviders>
+            {children}
+          </AppProviders>
           <Toaster position="top-right" richColors closeButton />
         </ThemeProvider>
       </body>
